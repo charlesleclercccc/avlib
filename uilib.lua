@@ -120,6 +120,8 @@ function module:CreateWindow(settings)
 		if open == true then frame.Visible = false; open = false elseif open == false then frame.Visible = true; open = true end
 	end)
 	
+	local window = {}
+	
 	function window:CreateTab(namee)
 		local tab = Instance.new("Frame")
 		tab.BackgroundColor3 = Color3.new(0.0862745, 0.0862745, 0.0862745)
@@ -163,7 +165,11 @@ function module:CreateWindow(settings)
 		name.MouseButton1Down:Connect(function()
 			tabv.Value = namee
 		end)
+		
+		
 	end
+	
+	return window
 end
 
 return module
