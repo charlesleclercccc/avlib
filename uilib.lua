@@ -7,6 +7,11 @@ function module:CreateWindow(settings)
 	main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	main.Name = "main"
 	main.Parent = game.CoreGui
+	
+	local tabv = Instance.new("StringValue")
+	tabv.Name = "tab"
+	tabv.Parent = main
+	tabv.Value = nil
 
 	local window = Instance.new("Frame")
 	window.BackgroundColor3 = Color3.new(0.12549, 0.12549, 0.12549)
@@ -114,6 +119,51 @@ function module:CreateWindow(settings)
 	close.MouseButton1Down:Connect(function()
 		if open == true then frame.Visible = false; open = false elseif open == false then frame.Visible = true; open = true end
 	end)
+	
+	function window:CreateTab(namee)
+		local tab = Instance.new("Frame")
+		tab.BackgroundColor3 = Color3.new(0.0862745, 0.0862745, 0.0862745)
+		tab.BorderColor3 = Color3.new(0, 0, 0)
+		tab.BorderSizePixel = 0
+		tab.Position = UDim2.new(0, -681, 0, 3)
+		tab.Rotation = -90
+		tab.Size = UDim2.new(0, 100, 0, 25)
+		tab.Visible = true
+		tab.Name = "tab"
+		tab.Parent = tabs
+
+		local uicorner_3 = Instance.new("UICorner")
+		uicorner_3.Parent = tab
+
+		local uistroke = Instance.new("UIStroke")
+		uistroke.Color = Color3.new(0.168627, 0.509804, 0)
+		uistroke.Parent = tab
+
+		local name = Instance.new("TextButton")
+		name.Font = Enum.Font.Unknown
+		name.Text = namee
+		name.TextColor3 = Color3.new(1, 1, 1)
+		name.TextScaled = true
+		name.TextSize = 15
+		name.TextWrapped = true
+		name.BackgroundColor3 = Color3.new(1, 1, 1)
+		name.BackgroundTransparency = 1
+		name.BorderColor3 = Color3.new(0, 0, 0)
+		name.BorderSizePixel = 0
+		name.Position = UDim2.new(0, 0, 0.159999996, 0)
+		name.Size = UDim2.new(0, 100, 0, 16)
+		name.Visible = true
+		name.Name = "name"
+		name.Parent = tab
+
+		local uitext_size_constraint = Instance.new("UITextSizeConstraint")
+		uitext_size_constraint.MaxTextSize = 15
+		uitext_size_constraint.Parent = name
+		
+		name.MouseButton1Down:Connect(function()
+			tabv.Value = namee
+		end)
+	end
 end
 
 return module
